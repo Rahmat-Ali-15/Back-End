@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Fetch</h1>
+</body>
+<script>
+    fetch('http://localhost:7090').then((res) => res.text()).then((res) => { console.log(res) }).catch((err) => console.log(err))
+</script>
+
+</html>
