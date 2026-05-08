@@ -6,6 +6,7 @@ const cors = require("cors");
 //# route import
 const { authModel } = require("./model/auth.model");
 const { Connection } = require("./config/db.js");
+const {todoRoutes} = require('./routes/todo.route.js')
 
 const app = express();
 
@@ -14,15 +15,23 @@ app.use(express.json(), express.text(), cors());
 
 //# signup
 app.post("/signup", async (req, res) => {
-  // console.log("🚀 ~ req:", req.body);
+  console.log("🚀 ~ req:", req.body);
 
   //# logic where  my date is there or not
   if (req.body === undefined || (!req.body.email && !req.body.password)) {
     res.status(404).send({ msg: "not found" });
   } else {
-    const authDataSave = new authModel(req.body);
-    await authDataSave.save();
-    res.status(201).json({ msg: "create user in DB", data: authDataSave });
+    const existData = await authModel.find({email: req.body.email})
+    console.log("🚀 ~ existData:", existData);
+
+    if(req.body.email === existData[0]?.email){
+      res.send('User already exist  in DB, please login...')
+    }
+    else{
+      const authDataSave = new authModel(req.body);
+      await authDataSave.save();
+      res.status(201).json({ msg: "create user in DB", data: authDataSave });
+    }
   }
 });
 
@@ -52,6 +61,7 @@ app.post("/login", async (req, res) => {
 });
 
 //# routes
+app.use('/todo', todoRoutes)
 
 //# server start
 app.listen(process.env.Port, async () => {
