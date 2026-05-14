@@ -1,0 +1,129 @@
+Relationship ->  It's a way two or more thing's (collection in are case) connected
+
+3 kind of Relationship
+
+A. 1-1 
+B. 1-Many
+C. Many-Many
+
+collection -> [ ]
+documents ->  { }
+
+1-1 Relationship
+
+*Instructor collection*
+
+employee_code
+techstack
+yearOfexprerience
+
+
+
+*students collection*
+
+student_code
+batch
+user_id
+
+
+
+*User collection*
+
+user_id
+name
+email
+city
+blood_group
+phone number
+
+
+Solutions:-
+1. way is put -> user_id in to students_collections -> right ways
+                        or
+2. way is put -> students_id in to user_collections
+
+
+1 - Many Relationship
+
+Linkdin example
+
+*Poste collection*
+
+post_id
+title
+body
+no_of_reation
+
+*comments collection*
+
+comments_id
+text
+no_of_reation
+post_id
+
+Solutions:-
+1. way is put -> comments_id in to post_collections
+                        or
+2. way is put -> post_id in to comment_collections -> right ways
+
+Many to Many Relationship
+
+
+*tags collection* : python, node, express, git, mySQL
+
+
+*question collections* :
+
+
+
+DEPENDEND COLLECTION AND INDEPENDENT COLLECTION
+child collection - parent collection
+
+
+1-1 Relationship
+
+student -> DEPENDEND || user -> INDEPENDENT
+
+
+1-Many Relationship
+
+post -> INDEPENDENT || comments -> DEPENDEND
+
+Many-Many
+
+// notes -> best way to figuer-out the conncept was just 
+            -> always put INDEPENDENT'S Id to DEPENDEND
+              -> always put parent Id into Child
+
+
+
+
+// excersise
+
+            user:- INDEPENDENT - parent
+
+
+            notes:- DEPENDEND - child
+
+
+
+Blog application :-
+// read ->UD -> user_id of that user -> is missing the user_id in the notes/blogs
+
+
+
+
+1 : 1
+
+student -> IDCard
+
+
+1 : many
+
+trainer -> student 
+
+
+
+many : many
+
+student -> course
