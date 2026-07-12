@@ -1,5 +1,6 @@
 const express = require("express");
 require("dotenv").config();
+const cors = require("cors");
 
 const { Connection, userModel } = require("./db");
 
@@ -8,6 +9,13 @@ const PORT = process.env.PORT;
 const app = express();
 
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+  }),
+)
 
 
 //# C R U D
@@ -90,7 +98,7 @@ app.post("/userCreate", async (req, res) => {
 
 
 //# Read
-app.get("/user", async (req, res) => {
+app.get("/userRead", async (req, res) => {
   const userData = await userModel.find();
   res.send(userData);
 });
