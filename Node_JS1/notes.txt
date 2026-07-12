@@ -1,0 +1,179 @@
+test> show dbs
+admin   40.00 KiB
+config  96.00 KiB
+local   40.00 KiB
+test> use my_db
+switched to db my_db
+my_db> db.createCollection("first_task")
+{ ok: 1 }
+my_db> show collections
+first_task
+my_db> db.my_db.insertOne({name: "Rahmat", age: 21, gender: "male"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('69f32ba7f105835d7e3682d1')
+}
+my_db> db.my_db.find()
+[
+  {
+    _id: ObjectId('69f32ba7f105835d7e3682d1'),
+    name: 'Rahmat',
+    age: 21,
+    gender: 'male'
+  }
+]
+my_db> db.my_db.deleteOne( {_id: ObjectId('69f32ba7f105835d7e3682d1')})
+{ acknowledged: true, deletedCount: 1 }
+
+
+my_db> db.my_db.updateOne({age: 21}, {$set:{name: "Rahmat Ali"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+my_db> db.my_db.insertMany([{name: "Aashif", age: 21, relationship: "brek-up"},{name: "Sugyan", age: 21, relationship: "single"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('69f337ce1e114e92413682d2'),
+    '1': ObjectId('69f337ce1e114e92413682d3')
+  }
+}
+
+my_db> db.my_db.renameCollection("first_db")
+{ ok: 1 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+test> show dbs
+admin    40.00 KiB
+config  104.00 KiB
+local    40.00 KiB
+my_db    48.00 KiB
+test> use my_db
+switched to db my_db
+my_db> show collections
+first_task
+my_db
+my_db> db.first_task.find()
+
+my_db> db.my_db.find()
+[
+  {
+    _id: ObjectId('69f32ba7f105835d7e3682d1'),
+    name: 'Rahmat',
+    age: 21,
+    gender: 'male'
+  }
+]
+my_db> db.my_db.deleteOne( {_id: ObjectId('69f32ba7f105835d7e3682d1')})
+{ acknowledged: true, deletedCount: 1 }
+my_db> db.my_db.find()
+
+my_db> db.my_db.insertOne({name: "Rahmat", age: 21, maritalStatus: true})
+{
+  acknowledged: true,
+  insertedId: ObjectId('69f3359c1e114e92413682d1')
+}
+my_db> db.my_db.find()
+[
+  {
+    _id: ObjectId('69f3359c1e114e92413682d1'),
+    name: 'Rahmat',
+    age: 21,
+    maritalStatus: true
+  }
+]
+my_db> db.my_db.updateOne({age: 21}, {$set:{name: "Rahmat Ali"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+my_db> db.my_db.find()
+[
+  {
+    _id: ObjectId('69f3359c1e114e92413682d1'),
+    name: 'Rahmat Ali',
+    age: 21,
+    maritalStatus: true
+  }
+my_db> db.my_db.insertMany([{name: "Aashif", age: 21, relationship: "brek-up"},{name: "Sugyan", age: 21, relationship: "single"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('69f337ce1e114e92413682d2'),
+    '1': ObjectId('69f337ce1e114e92413682d3')
+  }
+}
+my_db> db.my_db.find()
+[
+  {
+    _id: ObjectId('69f3359c1e114e92413682d1'),
+    name: 'Rahmat Ali',
+    age: 21,
+    maritalStatus: true
+  },
+  {
+    _id: ObjectId('69f337ce1e114e92413682d2'),
+    name: 'Aashif',
+    age: 21,
+    relationship: 'brek-up'
+  },
+  {
+    _id: ObjectId('69f337ce1e114e92413682d3'),
+    name: 'Sugyan',
+    age: 21,
+    relationship: 'single'
+  }
+]
+my_db> db.my_db.renameCollection("first_db")
+{ ok: 1 }
+my_db> db.my_db.find()
+
+my_db> show collections
+first_db
+first_task
+my_db> use first_db
+switched to db first_db
+first_db> show collections
+
+first_db>
