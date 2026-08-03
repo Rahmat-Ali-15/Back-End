@@ -115,7 +115,13 @@ export const login = async (req, res) => {
             {
                 success: true,
                 msg: "Login Successfull",
-                token
+                token,
+                user: {
+                        _id: existingUser._id,
+                        firstName: existingUser.firstName,
+                        lastName: existingUser.lastName,
+                        email: existingUser.email,
+                      },
             }
         )
 
@@ -128,4 +134,33 @@ export const login = async (req, res) => {
                 msg: "Internal Server Error"
             });
     }
-} 
+}
+
+
+//# ================= me ===================
+export const getMe = async (req, res) => {
+  try {
+    const user = await userModel
+      .findById(req.user.userId)
+      .select("-password");
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        msg: "User not found.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    console.log("Get Me Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      msg: "Internal Server Error",
+    });
+  }
+};
